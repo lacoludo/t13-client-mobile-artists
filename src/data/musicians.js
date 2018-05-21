@@ -1,4 +1,4 @@
-export const musicians = [
+export default musicians = [
   {
     id: 1,
     photo: "https://farm1.staticflickr.com/970/27385530337_b40746df08.jpg",

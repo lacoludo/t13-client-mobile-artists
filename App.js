@@ -24,6 +24,8 @@ import {
   ProfileStore
 } from "./src/home";
 
+import PublicContainer from './src/home/profilePublic/publicContainer';
+
 import getTheme from "./native-base-theme/components";
 import variables from "./native-base-theme/variables/commonColor";
 
@@ -122,7 +124,8 @@ const StackNavigatorOptions = {
 
 const ExploreNavigator = StackNavigator(
   {
-    Explore: { screen: Explore }
+    Explore: { screen: Explore },
+    ProfilePublic: {screen: PublicContainer},
   },
   StackNavigatorOptions
 );
@@ -137,6 +140,7 @@ const ProfileNavigator = StackNavigator(
 
 const HomeTabs = TabNavigator(
   {
+
     Explore: { screen: ExploreNavigator },
     Profile: { screen: ProfileNavigator }
   },
