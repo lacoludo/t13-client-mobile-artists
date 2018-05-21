@@ -1,7 +1,17 @@
 import autobind from "autobind-decorator";
 import * as React from "react";
 import moment from "moment";
-import { StyleSheet, View, Animated, SafeAreaView, TouchableWithoutFeedback, Platform, ScrollView, Image } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Animated,
+  SafeAreaView,
+  TouchableWithoutFeedback,
+  Platform,
+  ScrollView,
+  Image,
+  ImageBackground
+} from "react-native";
 import { inject, observer } from "mobx-react/native";
 
 import ProfileStore from "../ProfileStore";
@@ -9,7 +19,7 @@ import ProfileStore from "../ProfileStore";
 import { Text, Theme, Avatar } from "../../components";
 import type { ScreenProps } from "../../components/Types";
 
-import { artists } from '../../data/artists';
+import { artists } from "../../data/artists";
 
 const AnimatedText = Animated.createAnimatedComponent(Text);
 const AnimatedSafeAreaView = Animated.createAnimatedComponent(SafeAreaView);
@@ -22,9 +32,12 @@ type InjectedProps = {
   profileStore: ProfileStore
 };
 
-@inject("profileStore") @observer
-export default class Explore extends React.Component<ScreenProps<> & InjectedProps, ExploreState> {
-
+@inject("profileStore")
+@observer
+export default class Explore extends React.Component<
+  ScreenProps<> & InjectedProps,
+  ExploreState
+> {
   state = {
     scrollAnimation: new Animated.Value(0)
   };
@@ -68,34 +81,55 @@ export default class Explore extends React.Component<ScreenProps<> & InjectedPro
         <AnimatedSafeAreaView style={[styles.header, { shadowOpacity }]}>
           <Animated.View style={[styles.innerHeader, { height }]}>
             <View>
-              <AnimatedText
-                type="header2"
-                style={{ fontSize, marginTop }}
-              >
+              <AnimatedText type="header2" style={{ fontSize, marginTop }}>
                 T13
               </AnimatedText>
             </View>
-            {
-              profile && (
-                <TouchableWithoutFeedback onPress={this.profile}>
-                  <View>
-                    <Avatar {...profile.picture} />
-                  </View>
-                </TouchableWithoutFeedback>
-              )
-            }
           </Animated.View>
         </AnimatedSafeAreaView>
         <ScrollView>
-          {artists.map((artist, index) => 
-          <View>
-            <Text>{artist.name}</Text>
-            <Image source={{ uri: artist.photo }} style={{width: 40, height: 40}}/>
-          </View>
-         
-          )
-          
-          }
+          {artists.map((artist, index) => (
+            <View>
+              <Image
+                source={{ uri: artist.photo }}
+                style={{
+                  width: "98.5%",
+                  height: 220,
+                  margin: 5,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  marginTop: 15,
+                  marginBottom: 10,
+                }}
+              >
+              </Image>
+              <Text
+                style={{
+                  backgroundColor: "rgba(0,0,0,0)",
+                  color: "#fff",
+                  fontSize: 23,
+                  marginLeft: 5
+                }}
+              >
+                {artist.name}
+              </Text>
+              <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
+              {artist.skills.map((skill, index) => (
+                <Text
+                  style={{
+                    color: "#fff",
+                    fontSize: 14,
+                    marginLeft: 5,
+                    marginBottom: 5,
+                    paddingRight: 5
+                  }}
+                >
+                  {skill}
+                </Text>
+              ))}
+              </View>
+            </View>
+          ))}
         </ScrollView>
       </View>
     );
