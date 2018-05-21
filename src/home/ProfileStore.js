@@ -5,10 +5,10 @@ import type { Profile } from "../components/Model";
 
 const DEFAULT_PROFILE: Profile = {
   name: "Anonymous",
-  outline: "React Native",
+  outline: "Musician",
   picture: {
     uri:
-      "https://media.licdn.com/dms/image/C4E03AQHZ5kAxawJlog/profile-displayphoto-shrink_200_200/0?e=1531958400&v=beta&t=JQZ9KK4xOZp2gWS27bFJQcBcYsYdGxjO9-4tYQz2b_Q",
+      "https://farm1.staticflickr.com/827/42258282881_0b367c435e.jpg",
     preview:
       "data:image/gif;base64,R0lGODlhAQABAPAAAKyhmP///yH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=="
   }

@@ -14,12 +14,11 @@ import {
 } from "react-native";
 import { inject, observer } from "mobx-react/native";
 
+import { musicians } from "../../data/musicians";
 import ProfileStore from "../ProfileStore";
 
 import { Text, Theme, Avatar } from "../../components";
 import type { ScreenProps } from "../../components/Types";
-
-import { artists } from "../../data/artists";
 
 const AnimatedText = Animated.createAnimatedComponent(Text);
 const AnimatedSafeAreaView = Animated.createAnimatedComponent(SafeAreaView);
@@ -88,45 +87,17 @@ export default class Explore extends React.Component<
           </Animated.View>
         </AnimatedSafeAreaView>
         <ScrollView>
-          {artists.map((artist, index) => (
+          {musicians.map((musician, index) => (
             <View>
               <Image
-                source={{ uri: artist.photo }}
-                style={{
-                  width: "98.5%",
-                  height: 220,
-                  margin: 5,
-                  justifyContent: "center",
-                  alignItems: "center",
-                  marginTop: 15,
-                  marginBottom: 10,
-                }}
-              >
-              </Image>
-              <Text
-                style={{
-                  backgroundColor: "rgba(0,0,0,0)",
-                  color: "#fff",
-                  fontSize: 23,
-                  marginLeft: 5
-                }}
-              >
-                {artist.name}
-              </Text>
-              <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
-              {artist.skills.map((skill, index) => (
-                <Text
-                  style={{
-                    color: "#fff",
-                    fontSize: 14,
-                    marginLeft: 5,
-                    marginBottom: 5,
-                    paddingRight: 5
-                  }}
-                >
-                  {skill}
-                </Text>
-              ))}
+                source={{ uri: musician.photo }}
+                style={styles.musicianPhoto}
+              />
+              <Text style={styles.musicianName}>{musician.name}</Text>
+              <View style={styles.inlineTextWrap}>
+                {musician.skills.map((skill, index) => (
+                  <Text style={styles.musicianSkill}>{skill}</Text>
+                ))}
               </View>
             </View>
           ))}
@@ -155,8 +126,29 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center"
   },
-  newPosts: {
-    position: "absolute",
-    top: 0
+  inlineTextWrap: {
+    flexDirection: "row",
+    flexWrap: "wrap"
+  },
+  musicianPhoto: {
+    width: "98.5%",
+    height: 220,
+    margin: 5,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 15,
+    marginBottom: 10
+  },
+  musicianName: {
+    color: "#fff",
+    fontSize: 22,
+    marginLeft: 5
+  },
+  musicianSkill: {
+    color: "#fff",
+    fontSize: 14,
+    marginLeft: 5,
+    marginBottom: 5,
+    paddingRight: 5
   }
 });
