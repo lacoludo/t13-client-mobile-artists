@@ -22,7 +22,12 @@ export default class ArtistsContainer extends Component {
       <View>
         <ScrollView>
           {artists.map((artist, index) => 
-          <Text>{artist.name}</Text>)
+          <View>
+            <Text>{artist.name}</Text>
+            <Image source={{ uri: artist.photo }} style={{width: 40, height: 40}}/>
+          </View>
+         
+          )
           
           }
         </ScrollView>
